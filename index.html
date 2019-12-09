@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/app.css">
+    <title>Roadmap - Matthew Akino-Wittering</title>
+  </head>
+  <body>
+    <header>
+      <h1>Product Roadmap</h1>
+    </header>
+    <div id="app">
+      <div class="container grid-xl">
+        <!-- Present Roadmap -->
+        <div class="columns roadmap" id="present" v-if="presentRoadmap">
+          <!-- Now -->
+          <div class="column col-4 timeframe">
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <h2>Now</h2>
+                </div>
+              </div>
+              <div class="panel-body">
+                <template v-for="item in getRoadmapNow">
+                  <div class="tile">
+                    <div class="tile-content">
+                      <p class="tile-title text-bold h5">{{ item.title }}</p>
+                      <p class="tile-subtitle">{{ item.description }}</p>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <!-- Next -->
+          <div class="column col-4 timeframe">
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <h2>Next</h2>
+                </div>
+              </div>
+              <div class="panel-body">
+                  <template v-for="item in getRoadmapNext">
+                      <div class="tile">
+                        <div class="tile-content">
+                          <p class="tile-title text-bold h5">{{ item.title }}</p>
+                          <p class="tile-subtitle">{{ item.description }}</p>
+                        </div>
+                      </div>
+                    </template>
+              </div>
+            </div>
+          </div>
+          <!-- Future -->
+          <div class="column col-4 timeframe">
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <h2>Future</h2>
+                </div>
+              </div>
+              <div class="panel-body">
+                <template v-for="item in getRoadmapFuture">
+                  <div class="tile">
+                    <div class="tile-content">
+                      <p class="tile-title text-bold h5">{{ item.title }}</p>
+                      <p class="tile-subtitle">{{ item.description }}</p>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modify Roadmap -->
+        <div class="columns roadmap" id="modify" v-if="modifyRoadmap">
+          <div class="column col-12 timeframe">
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <h2>Roadmap</h2>
+                </div>
+              </div>
+              <div class="panel-body">
+                <template v-for="item in roadmap.list">
+                  <form class="form-horizontal" v-on:submit.prevent="">
+                    <div class="form-group">
+                      <div class="col-2 col-sm-12 col-ml-auto">
+                        <label class="form-label" for="title">Title</label>
+                      </div>
+                      <div class="col-6 col-sm-12 col-mr-auto">
+                        <input class="form-input" id="title" placeholder="Title of next roadmap item" type="text" v-model="item.title" @change="updateRoadmapItem(item.id)">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-2 col-sm-12 col-ml-auto">
+                        <label class="form-label" for="description">Description</label>
+                      </div>
+                      <div class="col-6 col-sm-12 col-mr-auto">
+                        <textarea class="form-input" id="description" placeholder="Description of the next roadmap item" rows="3" v-model="item.description" @change="updateRoadmapItem(item.id)"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-2 col-sm-12 col-ml-auto">
+                        <label class="form-label" for="timeframe">Timeframe</label>
+                      </div>
+                      <div class="col-6 col-sm-12 col-mr-auto">
+                        <select class="form-select" v-model="item.timeframe" @change="updateRoadmapItem(item.id)">
+                          <option v-for="option in timeframe" v-bind:value="option.value">
+                            {{ option.label }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-2 col-sm-12 col-ml-auto"></div>
+                      <div class="col-6 col-sm-12 col-mr-auto">
+                        <button class="btn" @click="deleteRoadmapItem(item.id)">Delete</button>
+                      </div>
+                    </div>
+                  </form>
+                </template>
+              </div>
+              <div class="panel-footer">
+                <button class="btn btn-primary" id="add-button" @click="addRoadmapItem()">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Toggle View -->
+        <div class="columns">
+          <div class="column col-12 text-center">
+            <div class="btn-group">
+              <button class="btn btn-sm" v-bind:class="[presentRoadmap ? 'active' : '']" @click="showPresentRoadmap()">Present</button>
+              <button class="btn btn-sm" v-bind:class="[modifyRoadmap ? 'active' : '']" @click="showModifyRoadmap()">Modify</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

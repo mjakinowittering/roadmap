@@ -1,0 +1,108 @@
+/* Typography
+*/
+
+h1, h2 {
+    font-family: 'Permanent Marker', cursive;
+}
+
+h6 {
+    font-weight: bolder;
+}
+
+/* Classes
+*/
+
+.form-horizontal {
+    border-top: 1px solid #dadee4;
+    margin: 1rem 0;
+    padding: 1rem 0 0rem;
+}
+
+.form-horizontal:first-of-type {
+    margin: 0rem 0 1rem;
+    padding: 1rem 0 0rem;
+}
+
+.form-horizontal:last-of-type {
+    border-bottom: 1px solid #dadee4;
+    margin: 1rem 0 0rem;
+    padding: 1rem 0 1rem;
+}
+
+/* Layout
+*/
+
+body {
+    background: #ffffff;
+    padding: 2rem 2rem 1rem;
+}
+
+body header {
+    text-align: center;
+}
+
+body div#app {
+    margin: 1.5rem auto;
+}
+
+body div#app div.container {
+    background: #f7f7f7;
+    border-radius: 0.25rem;
+    padding: 0.75rem 0.75rem;
+    margin: 0 auto 2rem;
+}
+
+body div#app div.container div.columns {
+    
+}
+
+body div#app div.container div.columns div.column {
+    
+}
+
+body div#app div.container div.columns div.column.timeframe {
+    min-height: 75vh;
+}
+
+/* body div#app div.container div#modify.columns div.column.timeframe {
+    max-height: 75vh;
+} */
+
+body div#app div.container div.columns:last-of-type div.column {
+    padding: 0.8rem 0 0.25rem;
+}
+
+body div#app div.container div.columns div.column div.panel {
+    background: #fcfcfc;
+    height: 100%;
+}
+
+body div#app div.container div.columns div.column div.panel div.panel-header div.panel-title h2 {
+    margin: 0;
+}
+
+/* body div#app div.container div.columns div.column div.panel div.panel-body {
+    border-top: 1px solid #dadee4;
+    border-bottom: 1px solid #dadee4;
+    overflow-y: scroll;
+} */
+
+body div#app div.container div.columns div.column div.panel div.panel-body div.tile div.tile-content p.tile-title {
+    margin: 0 0 0.6rem;
+}
+
+body div#app div.container div.columns div.column div.panel div.panel-body form.form-horizontal div.form-group div button {
+    min-width: 6rem;
+}
+
+body div#app div.container div.columns div.column div.panel div.panel-footer {
+    text-align: center;
+}
+
+body div#app div.container div.columns div.column div.panel div.panel-footer button {
+    width: 10rem;
+}
+
+body div#app div.container div.columns div.column div.btn-group button {
+    min-width: 4rem;
+}
