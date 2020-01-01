@@ -12,7 +12,7 @@ h6 {
 /* Classes
 */
 
-.form-horizontal {
+/* .form-horizontal {
     border-top: 1px solid #dadee4;
     margin: 1rem 0;
     padding: 1rem 0 0rem;
@@ -27,82 +27,91 @@ h6 {
     border-bottom: 1px solid #dadee4;
     margin: 1rem 0 0rem;
     padding: 1rem 0 1rem;
+} */
+
+div.card {
+    min-height: 275px;
+}
+
+div.card > div.card-header > div.card-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+    line-height: 36px;
 }
 
 /* Layout
 */
 
 body {
-    background: #ffffff;
-    padding: 2rem 2rem 1rem;
+    background: #f7f7f7;
+    padding: 0.5rem 2rem 1rem;
 }
 
-body header {
+body > div#app {
+    margin: 0 auto;
+}
+
+body > div#app > header.container {
+    
+}
+
+body > div#app > header.container > div.columns {
+    
+}
+
+body > div#app > header.container > div.columns > div.column {
+    height: 3.5rem;
+    padding: 0 0.5rem;
+}
+
+body > div#app > header.container > div.columns > div.column > h1 {
+    font-size: 2rem;
+    line-height: 3rem;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-body div#app {
-    margin: 1.5rem auto;
-}
-
-body div#app div.container {
-    background: #f7f7f7;
-    border-radius: 0.25rem;
-    padding: 0.75rem 0.75rem;
-    margin: 0 auto 2rem;
-}
-
-body div#app div.container div.columns {
-    
-}
-
-body div#app div.container div.columns div.column {
-    
-}
-
-body div#app div.container div.columns div.column.timeframe {
-    min-height: 75vh;
-}
-
-/* body div#app div.container div#modify.columns div.column.timeframe {
-    max-height: 75vh;
-} */
-
-body div#app div.container div.columns:last-of-type div.column {
-    padding: 0.8rem 0 0.25rem;
-}
-
-body div#app div.container div.columns div.column div.panel {
+body > div#app > div.container {
     background: #fcfcfc;
+    border: 1px solid #dadee4;
+    border-radius: 0.25rem;
+    height: calc(100vh - 5rem);
+    padding: 0.75rem 0.75rem;
+}
+
+body > div#app > div.container > div.columns {
     height: 100%;
 }
 
-body div#app div.container div.columns div.column div.panel div.panel-header div.panel-title h2 {
-    margin: 0;
+body > div#app > div.container > div.columns > div.column {
+    height: 100%;
 }
 
-/* body div#app div.container div.columns div.column div.panel div.panel-body {
-    border-top: 1px solid #dadee4;
-    border-bottom: 1px solid #dadee4;
-    overflow-y: scroll;
-} */
-
-body div#app div.container div.columns div.column div.panel div.panel-body div.tile div.tile-content p.tile-title {
-    margin: 0 0 0.6rem;
+body > div#app > div.container > div.columns > div.column > header {
+    padding: 0 0.5rem;
 }
 
-body div#app div.container div.columns div.column div.panel div.panel-body form.form-horizontal div.form-group div button {
-    min-width: 6rem;
+body > div#app > div.container > div.columns > div.column > header > h2 {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    margin: 0 0 0.5rem;
+    padding: 0;
 }
 
-body div#app div.container div.columns div.column div.panel div.panel-footer {
-    text-align: center;
+body > div#app > div.container > div.columns > div.column > header > a.btn {
+    margin: 0.5rem 0;
 }
 
-body div#app div.container div.columns div.column div.panel div.panel-footer button {
-    width: 10rem;
+body > div#app > div.container > div.columns > div.column > div.lane {
+    background: #f5f6fa;
+    border: 1px solid #dadee4;
+    border-radius: 0.25rem;
+    height: calc(100% - 3rem);
+    overflow-y: auto;
+    padding: 0.5rem 0.5rem;
 }
 
-body div#app div.container div.columns div.column div.btn-group button {
-    min-width: 4rem;
+body > div#app > div.container > div.columns > div.column > div.lane > div.card {
+    margin: 0 0 0.5rem;
 }
