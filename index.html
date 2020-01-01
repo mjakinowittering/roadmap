@@ -6,142 +6,94 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="css/app.css">
     <title>Roadmap - Matthew Akino-Wittering</title>
   </head>
   <body>
-    <header>
-      <h1>Product Roadmap</h1>
-    </header>
     <div id="app">
+      <!-- Modal Window -->
+      <div class="modal" id="modal-id" :class="{ 'active' : modal == true}">
+        <a href="#close" class="modal-overlay" aria-label="Close" @click="hideModal()" v-on:click.prevent=""></a>
+        <div class="modal-container">
+          <div class="modal-header">
+            <a href="#close" class="btn btn-clear float-right" aria-label="Close" @click="hideModal()" v-on:click.prevent=""></a>
+            <div class="modal-title h5">{{ modalTitle() }}</div>
+          </div>
+          <div class="modal-body">
+            <div class="content">
+              <form class="form" v-on:submit.prevent="">
+                <div class="form-group">
+                  <label class="form-label" for="title">Title</label>
+                  <input class="form-input" id="title" placeholder="Title of next roadmap item" type="text" v-model="roadmap.form.title">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="description">Description</label>
+                  <textarea class="form-input" id="description" placeholder="Description of the next roadmap item" rows="6" v-model="roadmap.form.description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="timeframe">Timeframe</label>
+                  <select class="form-select" v-model="roadmap.form.timeframe">
+                    <option v-for="option in timeframe" v-bind:value="option.value">
+                      {{ option.label }}
+                    </option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" @click="submitModal()" v-on:click.prevent="">Save</button>
+            <a class="btn btn-link" href="#close" @click="hideModal()" v-on:click.prevent="">Close</a>
+          </div>
+        </div>
+      </div>
+      <!-- Roadmap -->
+      <header class="container grid-xl">
+        <div class="columns">
+          <div class="column col-12">
+            <h1>Roadmap</h1>
+          </div>
+        </div>
+      </header>
       <div class="container grid-xl">
         <!-- Present Roadmap -->
         <div class="columns roadmap" id="present" v-if="presentRoadmap">
-          <!-- Now -->
-          <div class="column col-4 timeframe">
-            <div class="panel">
-              <div class="panel-header">
-                <div class="panel-title">
-                  <h2>Now</h2>
-                </div>
-              </div>
-              <div class="panel-body">
-                <template v-for="item in getRoadmapNow">
-                  <div class="tile">
-                    <div class="tile-content">
-                      <p class="tile-title text-bold h5">{{ item.title }}</p>
-                      <p class="tile-subtitle">{{ item.description }}</p>
+          <template v-for="timeframe in getRoadmap">
+            <div class="column col-4 timeframe">
+              <header>
+                <a class="btn btn-primary s-circle float-right" @click="showCreateModal(timeframe.key)"><i class="icon icon-plus"></i></a>
+                <h2>{{ timeframe.title }}</h2>
+              </header>
+              <div class="lane">
+                <template v-for="item in timeframe.results">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="dropdown dropdown-right float-right">
+                        <a class="btn btn-link dropdown-toggle" tabindex="0">
+                          <i class="icon icon-menu"></i>
+                        </a>
+                        <!-- menu component -->
+                        <ul class="menu text-left">
+                          <li class="menu-item">
+                            <a @click="showUpdateModal(item.id)"><i class="icon icon-edit"></i> &nbsp; Edit</a>
+                          </li>
+                          <li class="menu-item">
+                            <a @click="deleteRoadmapItem(item.id)"><i class="icon icon-delete"></i> &nbsp; Delete</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="card-title">{{ item.id }} - {{ item.title }}</div>
+                    </div>
+                    <div class="card-body">
+                      <p>{{ item.description }}</p>
                     </div>
                   </div>
                 </template>
               </div>
             </div>
-          </div>
-          <!-- Next -->
-          <div class="column col-4 timeframe">
-            <div class="panel">
-              <div class="panel-header">
-                <div class="panel-title">
-                  <h2>Next</h2>
-                </div>
-              </div>
-              <div class="panel-body">
-                  <template v-for="item in getRoadmapNext">
-                      <div class="tile">
-                        <div class="tile-content">
-                          <p class="tile-title text-bold h5">{{ item.title }}</p>
-                          <p class="tile-subtitle">{{ item.description }}</p>
-                        </div>
-                      </div>
-                    </template>
-              </div>
-            </div>
-          </div>
-          <!-- Future -->
-          <div class="column col-4 timeframe">
-            <div class="panel">
-              <div class="panel-header">
-                <div class="panel-title">
-                  <h2>Future</h2>
-                </div>
-              </div>
-              <div class="panel-body">
-                <template v-for="item in getRoadmapFuture">
-                  <div class="tile">
-                    <div class="tile-content">
-                      <p class="tile-title text-bold h5">{{ item.title }}</p>
-                      <p class="tile-subtitle">{{ item.description }}</p>
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Modify Roadmap -->
-        <div class="columns roadmap" id="modify" v-if="modifyRoadmap">
-          <div class="column col-12 timeframe">
-            <div class="panel">
-              <div class="panel-header">
-                <div class="panel-title">
-                  <h2>Roadmap</h2>
-                </div>
-              </div>
-              <div class="panel-body">
-                <template v-for="item in roadmap.list">
-                  <form class="form-horizontal" v-on:submit.prevent="">
-                    <div class="form-group">
-                      <div class="col-2 col-sm-12 col-ml-auto">
-                        <label class="form-label" for="title">Title</label>
-                      </div>
-                      <div class="col-6 col-sm-12 col-mr-auto">
-                        <input class="form-input" id="title" placeholder="Title of next roadmap item" type="text" v-model="item.title" @change="updateRoadmapItem(item.id)">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-2 col-sm-12 col-ml-auto">
-                        <label class="form-label" for="description">Description</label>
-                      </div>
-                      <div class="col-6 col-sm-12 col-mr-auto">
-                        <textarea class="form-input" id="description" placeholder="Description of the next roadmap item" rows="3" v-model="item.description" @change="updateRoadmapItem(item.id)"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-2 col-sm-12 col-ml-auto">
-                        <label class="form-label" for="timeframe">Timeframe</label>
-                      </div>
-                      <div class="col-6 col-sm-12 col-mr-auto">
-                        <select class="form-select" v-model="item.timeframe" @change="updateRoadmapItem(item.id)">
-                          <option v-for="option in timeframe" v-bind:value="option.value">
-                            {{ option.label }}
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-2 col-sm-12 col-ml-auto"></div>
-                      <div class="col-6 col-sm-12 col-mr-auto">
-                        <button class="btn" @click="deleteRoadmapItem(item.id)">Delete</button>
-                      </div>
-                    </div>
-                  </form>
-                </template>
-              </div>
-              <div class="panel-footer">
-                <button class="btn btn-primary" id="add-button" @click="addRoadmapItem()">Add</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Toggle View -->
-        <div class="columns">
-          <div class="column col-12 text-center">
-            <div class="btn-group">
-              <button class="btn btn-sm" v-bind:class="[presentRoadmap ? 'active' : '']" @click="showPresentRoadmap()">Present</button>
-              <button class="btn btn-sm" v-bind:class="[modifyRoadmap ? 'active' : '']" @click="showModifyRoadmap()">Modify</button>
-            </div>
-          </div>
+          </template>
         </div>
       </div>
     </div>
