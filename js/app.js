@@ -14,7 +14,7 @@ let app = new Vue({
                 timeframe: 'LATER'
             }
         },
-        timeframe: [
+        timeframes: [
             {
                 value: 'NOW',
                 label: 'Now'
@@ -129,7 +129,7 @@ let app = new Vue({
     },
     computed: {
         getRoadmap: function() {
-            return this.timeframe.map(timeframe => ({
+            return this.timeframes.map(timeframe => ({
                 key: timeframe.value,
                 title: timeframe.label,
                 results: this.roadmap.list.filter(item => item.timeframe === timeframe.value)
