@@ -129,23 +129,11 @@ let app = new Vue({
     },
     computed: {
         getRoadmap: function() {
-            return [
-                {
-                    key: 'NOW',
-                    title: 'Now',
-                    results: this.roadmap.list.filter(item => item.timeframe === 'NOW')
-                },
-                {
-                    key: 'NEXT',
-                    title: 'Next',
-                    results: this.roadmap.list.filter(item => item.timeframe === 'NEXT')
-                },
-                {
-                    key: 'LATER',
-                    title: 'Later',
-                    results: this.roadmap.list.filter(item => item.timeframe === 'LATER')
-                }
-            ]
+            return this.timeframe.map(timeframe => ({
+                key: timeframe.value,
+                title: timeframe.label,
+                results: this.roadmap.list.filter(item => item.timeframe === timeframe.value)
+            }))
         }
     },
     mounted() {
