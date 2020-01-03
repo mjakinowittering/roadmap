@@ -150,6 +150,8 @@ let app = new Vue({
     },
     mounted() {
         // Load data from Browser Storage.
-        this.roadmap = JSON.parse(localStorage.roadmap)
+        Object.keys(JSON.parse(localStorage.roadmap)).forEach(key => {
+            this.roadmap[key] = JSON.parse(localStorage.roadmap)[key]
+        })
     }
 })
