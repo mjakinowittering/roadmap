@@ -50,18 +50,18 @@
         </div>
       </div>
       <!-- Roadmap -->
-      <header class="container grid-xl">
+      <header class="container">
         <div class="columns">
           <div class="column col-12">
             <h1>Roadmap</h1>
           </div>
         </div>
       </header>
-      <div class="container grid-xl">
+      <div class="container">
         <!-- Present Roadmap -->
         <div class="columns roadmap" id="present" v-if="presentRoadmap">
           <template v-for="timeframe in getRoadmap">
-            <div class="column col-4 timeframe">
+            <div class="column col-3 timeframe">
               <header>
                 <a class="btn btn-primary s-circle float-right" @click="showCreateModal(timeframe.key)"><i class="icon icon-plus"></i></a>
                 <h2>{{ timeframe.title }}</h2>

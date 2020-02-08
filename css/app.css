@@ -43,8 +43,8 @@ div.card > div.card-header > div.card-title {
 */
 
 body {
-    background: #f7f7f7;
-    padding: 0.5rem 2rem 1rem;
+    background: #fcfcfc;
+    padding: 0.5rem 1rem 1rem;
 }
 
 body > div#app {
@@ -74,7 +74,7 @@ body > div#app > header.container > div.columns > div.column > h1 {
 
 body > div#app > div.container {
     background: #fcfcfc;
-    border: 1px solid #dadee4;
+    /* border: 1px solid #dadee4; */
     border-radius: 0.25rem;
     height: calc(100vh - 5rem);
     padding: 0.75rem 0.75rem;
@@ -104,8 +104,8 @@ body > div#app > div.container > div.columns > div.column > header > a.btn {
 }
 
 body > div#app > div.container > div.columns > div.column > div.lane {
-    background: #f5f6fa;
-    border: 1px solid #dadee4;
+    background: #f4f5f7;
+    /* border: 1px solid #dadee4; */
     border-radius: 0.25rem;
     height: calc(100% - 3rem);
     overflow-y: auto;
@@ -113,5 +113,6 @@ body > div#app > div.container > div.columns > div.column > div.lane {
 }
 
 body > div#app > div.container > div.columns > div.column > div.lane > div.card {
+    box-shadow: 0 8px 6px -6px #cccccc;
     margin: 0 0 0.5rem;
 }

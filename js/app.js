@@ -26,6 +26,10 @@ let app = new Vue({
             {
                 value: 'LATER',
                 label: 'Later'
+            },
+            {
+                value: 'WAY-LATER',
+                label: 'Way Later'
             }
         ]
     },
