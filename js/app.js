@@ -88,9 +88,9 @@ let app = new Vue({
         },
         modalTitle: function() {
             if (this.roadmap.form.id === undefined) {
-                return 'Create a new Roadmap Theme'
+                return 'Create a new Theme'
             } else {
-                return 'Update a Roadmap Theme'
+                return 'Update a Theme'
             }
         },
         showModal: function() {

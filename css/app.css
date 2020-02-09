@@ -60,13 +60,13 @@ body > div#app > header.container > div.columns {
 }
 
 body > div#app > header.container > div.columns > div.column {
-    height: 3.5rem;
+    height: 2rem;
     padding: 0 0.5rem;
 }
 
 body > div#app > header.container > div.columns > div.column > h1 {
     font-size: 2rem;
-    line-height: 3rem;
+    line-height: 2rem;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -76,8 +76,8 @@ body > div#app > div.container {
     background: #fcfcfc;
     /* border: 1px solid #dadee4; */
     border-radius: 0.25rem;
-    height: calc(100vh - 5rem);
-    padding: 0.75rem 0.75rem;
+    height: calc(100vh - 3.5rem);
+    padding: 0.75rem 0.75rem 0rem;
 }
 
 body > div#app > div.container > div.columns {
@@ -89,27 +89,31 @@ body > div#app > div.container > div.columns > div.column {
 }
 
 body > div#app > div.container > div.columns > div.column > header {
+    background: #f4f5f7;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
     padding: 0 0.5rem;
 }
 
 body > div#app > div.container > div.columns > div.column > header > h2 {
     font-size: 1.6rem;
     line-height: 2.6rem;
-    margin: 0 0 0.5rem;
+    margin: 0;
     padding: 0;
 }
 
 body > div#app > div.container > div.columns > div.column > header > a.btn {
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 0;
 }
 
 body > div#app > div.container > div.columns > div.column > div.lane {
     background: #f4f5f7;
-    /* border: 1px solid #dadee4; */
-    border-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
     height: calc(100% - 3rem);
     overflow-y: auto;
     padding: 0.5rem 0.5rem;
+    width: 100%;
 }
 
 body > div#app > div.container > div.columns > div.column > div.lane > div.card {
